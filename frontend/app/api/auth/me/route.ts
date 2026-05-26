@@ -10,6 +10,7 @@ export async function GET() {
     return new Response("Backend URL not configured", { status: 500 })
   }
 
+  
   return forwardJson(`${backendUrl}/auth/me`, {
     method: "GET",
     headers: await buildAuthHeaders(),

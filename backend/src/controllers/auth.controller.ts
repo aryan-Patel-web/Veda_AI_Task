@@ -13,6 +13,8 @@ import {
 } from "../validation/validateSchema.js";
 import { sendVerificationEmail } from "../utils/emailFn.js";
 
+
+
 dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET || "SECRET";
