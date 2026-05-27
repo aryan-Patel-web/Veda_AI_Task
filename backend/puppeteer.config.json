@@ -1,1 +1,4 @@
-{"cacheDirectory": "/opt/render/.cache/puppeteer"}
+
+{
+  "cacheDirectory": "/opt/render/project/.puppeteer_cache"
+}
