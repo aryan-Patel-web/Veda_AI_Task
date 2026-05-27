@@ -119,6 +119,7 @@ export const generateExamPdfBuffer = async (
             "--single-process",
         ],
     });
+    
     try {
         const page = await browser.newPage();
         const html = buildExamHtml(params);
