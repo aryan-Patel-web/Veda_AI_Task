@@ -10,6 +10,8 @@ type AssignmentEmailPayload = {
     scoreSummary?: string;
 };
 
+
+
 type VerificationEmailPayload = {
     to: string;
     userName?: string;
