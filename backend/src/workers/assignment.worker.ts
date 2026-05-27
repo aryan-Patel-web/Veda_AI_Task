@@ -59,17 +59,18 @@ const generatePdfUrl = async (
 const startWorker = async () => {
     await connectDB();
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    // ── MISTRAL API (OpenAI-compatible) ──────────────────────────────────────
+    const apiKey = process.env.MISTRAL_API_KEY;
     if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is not set");
+        throw new Error("MISTRAL_API_KEY is not set");
     }
 
     const client = new OpenAI({
         apiKey,
         baseURL:
-            process.env.GEMINI_BASE_URL ??
-            "https://generativelanguage.googleapis.com/v1beta/openai/",
+            process.env.MISTRAL_BASE_URL ?? "https://api.mistral.ai/v1",
     });
+    // ─────────────────────────────────────────────────────────────────────────
 
     const worker = new Worker(
         assignmentQueueName,
@@ -103,7 +104,7 @@ const startWorker = async () => {
                 ? await compressPdfText(
                       assignment.pdfText,
                       client,
-                      process.env.GEMINI_MODEL ?? "gemini-2.0-flash",
+                      process.env.MISTRAL_MODEL ?? "mistral-large-latest",
                   )
                 : undefined;
 
@@ -126,8 +127,9 @@ const startWorker = async () => {
 
             const userPrompt = buildAssignmentUserPrompt(promptInput);
             console.log("Generated user prompt for assignment", { userPrompt });
+
             const response = await client.chat.completions.create({
-                model: process.env.GEMINI_MODEL ?? "gemini-3-flash-preview",
+                model: process.env.MISTRAL_MODEL ?? "mistral-large-latest",
                 messages: [
                     { role: "system", content: ASSIGNMENT_SYSTEM_PROMPT },
                     { role: "user", content: userPrompt },
@@ -240,6 +242,8 @@ const startWorker = async () => {
         }
         console.error("Assignment job failed", error);
     });
+
+    console.log("✅ Assignment worker started");
 };
 
 startWorker().catch((error) => {
