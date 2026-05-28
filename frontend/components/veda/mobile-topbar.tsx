@@ -192,6 +192,7 @@ export function MobileTopBar() {
           <VedaLogo />
 
 
+
           <button
             type="button"
             onClick={() => setOpen(false)}
