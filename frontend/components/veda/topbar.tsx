@@ -18,11 +18,14 @@ type TopBarProps = {
 
 export function TopBar({ breadcrumbLabel }: TopBarProps) {
   const router = useRouter()
+
   const user = useAuthStore((state) => state.user)
   const clearUser = useAuthStore((state) => state.clearUser)
+
   const displayName = user
     ? `${user.firstName} ${user.lastName}`.trim()
     : "Teacher"
+
   const initials = displayName
     .split(" ")
     .filter(Boolean)
@@ -43,7 +46,8 @@ export function TopBar({ breadcrumbLabel }: TopBarProps) {
   }
 
   return (
-    <div className="mb-5 flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
+    <div className="hidden lg:flex mb-5 items-center justify-between rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
+      {/* Left Side */}
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -52,11 +56,14 @@ export function TopBar({ breadcrumbLabel }: TopBarProps) {
         >
           <ChevronLeft className="size-5" />
         </button>
+
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <Layout className="size-4 text-gray-400" />
           <span>{breadcrumbLabel}</span>
         </div>
       </div>
+
+      {/* Right Side */}
       <div className="flex items-center gap-4">
         <button
           type="button"
@@ -65,6 +72,7 @@ export function TopBar({ breadcrumbLabel }: TopBarProps) {
           <Bell className="size-5" />
           <span className="absolute top-1 right-1 size-2 rounded-full bg-orange-500"></span>
         </button>
+
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-1 text-sm text-gray-900 shadow-sm transition hover:text-gray-600">
             <Avatar className="size-7">
@@ -72,12 +80,18 @@ export function TopBar({ breadcrumbLabel }: TopBarProps) {
                 {initials || "U"}
               </AvatarFallback>
             </Avatar>
-            <span className="hidden sm:block">{displayName}</span>
+
+            <span>{displayName}</span>
+
             <ChevronDown className="size-4" />
           </DropdownMenuTrigger>
+
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+
+            <DropdownMenuItem onClick={handleLogout}>
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
