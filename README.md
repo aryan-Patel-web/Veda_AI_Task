@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://vedaai-frontend-yjvl.onrender.com/veda/logo.png" alt="VedaAI Logo" width="80"/>
+
 
 # VedaAI — AI-Powered Assignment Creator
 
