@@ -84,7 +84,7 @@
 
 
 import { cn } from "@/lib/utils"
-import logo from "../../../public/veda/logo.png"
+import logo from "../../public/veda/logo.png"
 
 type VedaLogoProps = {
   className?: string
