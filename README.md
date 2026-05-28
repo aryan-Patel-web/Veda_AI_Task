@@ -1,6 +1,6 @@
 <div align="center">
 
-
+<img src="https://vedaai-frontend-yjvl.onrender.com/veda/logo.png" alt="VedaAI Logo" width="80"/>
 
 # VedaAI — AI-Powered Assignment Creator
 
@@ -39,31 +39,55 @@
 
 ## 📸 App Screenshots
 
-> **How to add screenshots to your README:** Upload your images to `docs/screenshots/` in your GitHub repo, then reference them as shown below. GitHub renders them inline automatically. You can also drag-and-drop images directly into the GitHub web editor — it auto-generates the `![alt](url)` markdown.
+<!-- ============================================================
+  HOW TO ADD YOUR SCREENSHOTS (one-time setup):
+  1. In your GitHub repo, click "Add file" → "Upload files"
+  2. Create path:  docs/screenshots/  and upload these 6 files:
+       signup.png · otp-verify.png · assignments-empty.png
+       create-assignment.png · assignment-processing.png · assignment-completed.png
+  3. The images below will auto-render once the files exist.
+  TIP: Open this README.md in the GitHub web editor and drag-drop
+       images directly — GitHub uploads and pastes the URL for you.
+============================================================ -->
 
-### Sign Up Page
-![Sign Up](docs/screenshots/signup.png)
-> _First Name, Last Name, Email, Password — click **Send Verification Code**_
-
-### Email OTP Verification
-![OTP Verification](docs/screenshots/otp-verify.png)
-> _A 6-digit OTP is sent to your email. Enter it to activate your account._
-
-### Assignments Dashboard (Empty State)
-![Empty Dashboard](docs/screenshots/assignments-empty.png)
-> _Clean empty state with a single CTA to create the first assignment._
-
-### Create Assignment Form
-![Create Assignment](docs/screenshots/create-assignment.png)
-> _Multi-step form: title, subject, grade, question breakdown, difficulty, optional PDF upload._
-
-### Assignment Processing (Live Polling)
-![Processing](docs/screenshots/assignment-processing.png)
-> _Animated orange pulse badge — polls every 5s, no manual refresh needed._
-
-### Assignment Completed
-![Completed](docs/screenshots/assignment-completed.png)
-> _Green "Completed" badge. Click to open the full generated question paper + PDF download._
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <b>① Sign Up</b><br/>
+      <img src="docs/screenshots/signup.png" alt="Sign Up Page" width="100%"/>
+      <br/><sub>Enter name, email, password → click <b>Send Verification Code</b></sub>
+    </td>
+    <td align="center" width="50%">
+      <b>② Email OTP Verification</b><br/>
+      <img src="docs/screenshots/otp-verify.png" alt="OTP Verification" width="100%"/>
+      <br/><sub>A real 6-digit OTP is emailed — enter it to activate your account</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>③ Assignments Dashboard</b><br/>
+      <img src="docs/screenshots/assignments-empty.png" alt="Empty Dashboard" width="100%"/>
+      <br/><sub>Clean empty state with a single CTA to create the first assignment</sub>
+    </td>
+    <td align="center" width="50%">
+      <b>④ Create Assignment Form</b><br/>
+      <img src="docs/screenshots/create-assignment.png" alt="Create Assignment" width="100%"/>
+      <br/><sub>Subject · Grade · Question breakdown · Difficulty · Optional PDF upload</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>⑤ AI Processing (Live Polling)</b><br/>
+      <img src="docs/screenshots/assignment-processing.png" alt="Processing" width="100%"/>
+      <br/><sub>Animated orange pulse badge — auto-refreshes every 5s, no page reload</sub>
+    </td>
+    <td align="center" width="50%">
+      <b>⑥ Assignment Completed</b><br/>
+      <img src="docs/screenshots/assignment-completed.png" alt="Completed" width="100%"/>
+      <br/><sub>Green badge → click to view full question paper + download PDF</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -354,41 +378,62 @@ node dist/workers/email.worker.js
 
 ## 🔑 Environment Variables
 
+> ⚠️ **Never commit your `.env` file.** The `.gitignore` already excludes it. Set all variables in Render's dashboard for production.
+
 All variables go in `backend/.env`:
 
 ```env
-# Server
+# ── Server ────────────────────────────────────────────────────
 PORT=8080
 FRONTEND_ORIGIN=https://vedaai-frontend-yjvl.onrender.com
+PUPPETEER_CACHE_DIR=/opt/render/project/.puppeteer_cache   # Render only
 
-# Database
-DB_URL=mongodb+srv://USERNAME:PASSWORD@cluster.mongodb.net/veda-ai-assignment?retryWrites=true&w=majority
+# ── Database (MongoDB Atlas) ───────────────────────────────────
+DB_URL=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?appName=<AppName>
 
-# Queue
-REDIS_URL=rediss://default:PASSWORD@HOST:PORT
+# ── Queue (Upstash Redis) ──────────────────────────────────────
+REDIS_URL=rediss://default:<password>@<host>.upstash.io:6379
 
-# Auth
-JWT_SECRET=your_jwt_secret_here
+# ── Auth ──────────────────────────────────────────────────────
+JWT_SECRET=<your-long-random-secret>
 
-# AI — Mistral API (OpenAI-compatible)
-MISTRAL_API_KEY=your_mistral_api_key
+# ── AI — Mistral (OpenAI-compatible endpoint) ─────────────────
+MISTRAL_API_KEY=<your-mistral-api-key>
 MISTRAL_BASE_URL=https://api.mistral.ai/v1
 MISTRAL_MODEL=mistral-large-latest
 
-# Storage
-AWS_ACCESS_KEY_ID=your_iam_access_key
-AWS_SECRET_ACCESS_KEY=your_iam_secret_key
-AWS_REGION=ap-south-1
-AWS_S3_BUCKET=your-bucket-name
-AWS_S3_PUBLIC_BASE_URL=https://your-bucket-name.s3.ap-south-1.amazonaws.com
+# ── Storage (AWS S3) ──────────────────────────────────────────
+AWS_ACCESS_KEY_ID=<your-iam-access-key>
+AWS_SECRET_ACCESS_KEY=<your-iam-secret-key>
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=vedaai-pdfs-aryan
+AWS_S3_PUBLIC_BASE_URL=https://vedaai-pdfs-aryan.s3.amazonaws.com
 
-# Email
-SMTP_HOST=smtp.gmail.com
+# ── Email (Brevo SMTP relay) ──────────────────────────────────
+SMTP_HOST=smtp-relay.brevo.com
 SMTP_PORT=587
-SMTP_USER=youremail@gmail.com
-SMTP_PASS=your_16_char_app_password
-SMTP_FROM=youremail@gmail.com
+SMTP_USER=<your-brevo-smtp-login>
+SMTP_PASS=<your-brevo-smtp-key>
+SMTP_FROM="veda ai <youremail@gmail.com>"
 ```
+
+<details>
+<summary><b>📋 Where to get each value</b></summary>
+
+| Variable | Where to get it |
+|---|---|
+| `DB_URL` | MongoDB Atlas → Connect → Drivers → copy connection string |
+| `REDIS_URL` | Upstash console → your database → `rediss://` connection string |
+| `JWT_SECRET` | Any long random string — run `openssl rand -hex 32` |
+| `MISTRAL_API_KEY` | [console.mistral.ai](https://console.mistral.ai) → API Keys |
+| `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` | AWS IAM → create user with S3 full access |
+| `AWS_S3_BUCKET` | Your S3 bucket name (this project: `vedaai-pdfs-aryan`) |
+| `AWS_REGION` | Your bucket's region (this project: `us-east-1`) |
+| `SMTP_HOST/USER/PASS` | Brevo → SMTP & API → SMTP tab → copy credentials |
+| `SMTP_FROM` | Sender display name + email shown to recipients |
+| `PUPPETEER_CACHE_DIR` | Render-specific path for Chromium cache — only needed on Render |
+
+</details>
 
 ---
 
