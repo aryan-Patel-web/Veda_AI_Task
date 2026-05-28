@@ -24,7 +24,8 @@ export function VedaLogo({
         width={iconSize}
         height={iconSize}
         priority
-        className="rounded-2xl object-cover"
+        unoptimized
+        className="rounded-2xl"
       />
 
       <span
