@@ -880,12 +880,12 @@ export default function AssignmentsPage() {
       )}
 
       {/* Floating create button */}
-      <Button
+      {/* <Button
         asChild
         className="fixed bottom-24 left-1/2 z-20 h-11 w-[220px] -translate-x-1/2 rounded-full border border-orange-400 bg-[#111111] text-white shadow-[0_12px_28px_rgba(0,0,0,0.22)] hover:bg-[#1a1a1a] md:bottom-10"
       >
         <Link href="/assignments/create">+ Create Assignment</Link>
-      </Button>
+      </Button> */}
     </div>
   )
 }
