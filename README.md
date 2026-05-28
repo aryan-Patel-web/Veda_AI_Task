@@ -378,7 +378,6 @@ node dist/workers/email.worker.js
 
 ## 🔑 Environment Variables
 
-> ⚠️ **Never commit your `.env` file.** The `.gitignore` already excludes it. Set all variables in Render's dashboard for production.
 
 All variables go in `backend/.env`:
 
