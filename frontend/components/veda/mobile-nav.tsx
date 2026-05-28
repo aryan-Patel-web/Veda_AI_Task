@@ -2,7 +2,13 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { BookOpen, Home, Library, Sparkles } from "lucide-react"
+import {
+  BookOpen,
+  Home,
+  Library,
+  Sparkles,
+} from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -16,9 +22,10 @@ export function MobileNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed right-3 bottom-3 left-3 z-30 flex items-center justify-around rounded-[22px] border border-gray-200 bg-white px-3 py-2.5 text-gray-700 shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:hidden">
+    <nav className="fixed right-3 bottom-3 left-3 z-30 flex items-center justify-around rounded-[24px] bg-[#111111] px-3 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.35)] lg:hidden">
       {navItems.map((item) => {
         const Icon = item.icon
+
         const isActive =
           item.href === "/assignments"
             ? pathname.startsWith("/assignments")
@@ -28,13 +35,23 @@ export function MobileNav() {
           <Link
             key={item.label}
             href={item.href}
-            className={cn(
-              "flex flex-col items-center gap-1 text-xs",
-              isActive ? "text-gray-900" : "text-gray-400"
-            )}
+            className="flex flex-col items-center gap-1"
           >
-            <Icon className="size-4" />
-            {item.label}
+            <Icon
+              className={cn(
+                "size-4 transition-colors",
+                isActive ? "text-white" : "text-gray-500"
+              )}
+            />
+
+            <span
+              className={cn(
+                "text-[11px] font-medium transition-colors",
+                isActive ? "text-white" : "text-gray-500"
+              )}
+            >
+              {item.label}
+            </span>
           </Link>
         )
       })}
