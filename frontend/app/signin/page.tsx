@@ -159,9 +159,9 @@ export default function SignInPage() {
                 className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-left transition-colors hover:bg-gray-100"
               >
                 <p className="text-xs font-medium text-gray-900">
-                  Email: holmes.trevoraj@gmail.com
+                  Email: Testing@gmail.com
                 </p>
-                <p className="text-xs text-gray-600">Password: Ankit209.</p>
+                <p className="text-xs text-gray-600">Password: patel914078</p>
               </button>
             </div>
             <p className="text-center text-sm text-gray-500">
