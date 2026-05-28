@@ -580,12 +580,12 @@ pm2 restart all    # after any .env change
 
 ```
 docs/screenshots/
-├── signup.png               ← Screenshot 396
-├── otp-verify.png           ← Screenshot 395
-├── assignments-empty.png    ← Screenshot 397
-├── create-assignment.png    ← Screenshot 398
-├── assignment-processing.png ← Screenshot 399
-└── assignment-completed.png  ← Screenshot 400
+├── signup.png              
+├── otp-verify.png          
+├── assignments-empty.png    
+├── create-assignment.png   
+├── assignment-processing.png 
+└── assignment-completed.png  
 ```
 
 ---
