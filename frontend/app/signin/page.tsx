@@ -152,8 +152,8 @@ export default function SignInPage() {
                 type="button"
                 onClick={() => {
                   setFormValues({
-                    email: "holmes.trevoraj@gmail.com",
-                    password: "Ankit209.",
+                    email: "Testing@gmail.com",
+                    password: "patel9140",
                   })
                 }}
                 className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-left transition-colors hover:bg-gray-100"
@@ -161,7 +161,7 @@ export default function SignInPage() {
                 <p className="text-xs font-medium text-gray-900">
                   Email: Testing@gmail.com
                 </p>
-                <p className="text-xs text-gray-600">Password: patel914078</p>
+                <p className="text-xs text-gray-600">Password: patel9140</p>
               </button>
             </div>
             <p className="text-center text-sm text-gray-500">
