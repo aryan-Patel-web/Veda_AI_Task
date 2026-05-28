@@ -14,22 +14,18 @@ export function VedaLogo({
 }: VedaLogoProps) {
   const isSmall = size === "sm"
 
+  const iconSize = isSmall ? 32 : 40
+
   return (
-    <div className={cn("flex items-center gap-2.5", className)}>
-      <div
-        className={cn(
-          "relative overflow-hidden rounded-2xl",
-          isSmall ? "h-8 w-8" : "h-10 w-10"
-        )}
-      >
-        <Image
-          src="/veda/logo.png"
-          alt="Veda AI Logo"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
+    <div className={cn("flex items-center gap-3", className)}>
+      <Image
+        src="/veda/logo.png"
+        alt="Veda AI Logo"
+        width={iconSize}
+        height={iconSize}
+        priority
+        className="rounded-2xl object-cover"
+      />
 
       <span
         className={cn(
